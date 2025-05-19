@@ -5,11 +5,11 @@ Simple Library System for Ascendion Java Assessment
 - **Base URL**: http://localhost:8080/library-management-service/api/
 - **API Version**: v1
 - **Content Type**: application/json
-
-- 1) Register a new book to the library:
-- http://localhost:8080/library-management-service/api/books/create
+******************************************************************************************
+- **Name**: Register New Book
 - **Description**: Registers a new book in the library.
 - **Endpoint**: POST /books/create
+- **URL**: http://localhost:8080/library-management-service/api/books/create
 - **Request Body**:
 ```json
 {
@@ -27,11 +27,11 @@ Simple Library System for Ascendion Java Assessment
   "isbn": "1234567890"
 }
 ```
-
-- 2) Get a list of all books in the library.
-- http://localhost:8080/library-management-service/api/books/all
-- **Description**: Registers a new book in the library.
+******************************************************************************************
+- **Name**: Get All Books
+- **Description**: Get a list of all books in the library
 - **Endpoint**: GET /books/all
+- **URL**: http://localhost:8080/library-management-service/api/books/all
 - **Response**:
 ```json
 [
@@ -51,4 +51,5 @@ Simple Library System for Ascendion Java Assessment
   }
 ]
 ```
+******************************************************************************************
 

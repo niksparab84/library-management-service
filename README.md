@@ -6,8 +6,9 @@ Simple Library System for Ascendion Java Assessment
 - **API Version**: v1
 - **Content Type**: application/json
 
-- Register a new book to the library:
+- 1) Register a new book to the library:
 - http://localhost:8080/library-management-service/api/books/create
+- **Description**: Registers a new book in the library.
 - **Endpoint**: POST /books/create
 - **Request Body**:
 ```json
@@ -26,10 +27,10 @@ Simple Library System for Ascendion Java Assessment
   "isbn": "1234567890"
 }
 ```
-- **Description**: Registers a new book in the library.
 
-- Get a list of all books in the library.
+- 2) Get a list of all books in the library.
 - http://localhost:8080/library-management-service/api/books/all
+- **Description**: Registers a new book in the library.
 - **Endpoint**: GET /books/all
 - **Response**:
 ```json
@@ -50,5 +51,4 @@ Simple Library System for Ascendion Java Assessment
   }
 ]
 ```
-- **Description**: Retrieves a list of all books in the library.
 

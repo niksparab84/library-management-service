@@ -1,4 +1,4 @@
-package com.ascendion.library_management_service;
+package com.ascendion.libraryManagementService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

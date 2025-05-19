@@ -1,0 +1,21 @@
+# Spring Boot application configuration file
+server:
+  port: 8080
+  servlet:
+    context-path: /library-management-service/api
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:librarydb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /library-management-service/h2-console

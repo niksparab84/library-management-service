@@ -24,7 +24,8 @@ Simple Library System for Ascendion Java Assessment
   "id": 1,
   "title": "Book Title",
   "author": "Author Name",
-  "isbn": "1234567890"
+  "isbn": "1234567890",
+  "borrower": null
 }
 ```
 ******************************************************************************************
@@ -39,13 +40,15 @@ Simple Library System for Ascendion Java Assessment
     "id": 1,
     "title": "Book Title",
     "author": "Author Name",
-    "isbn": "1234567890"
+    "isbn": "1234567890",
+    "borrower": null
   },
   {
     "id": 2,
     "title": "Another Book",
     "author": "Another Author",
-    "isbn": "0987654321"
+    "isbn": "0987654321",
+    "borrower": null
   }
 ]
 ```

@@ -1,6 +1,8 @@
 package com.ascendion.libraryManagementService.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,12 +18,12 @@ public class Borrower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @NotBlank(message = "Name is mandatory")
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @NotBlank(message = "Email is mandatory")
+    @Email(message = "Email should be valid")
+    @Column(nullable = false)
     private String email;
-
-    @Column(name = "bookId")
-    private long bookId;
 }

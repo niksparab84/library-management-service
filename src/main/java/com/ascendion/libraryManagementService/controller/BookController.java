@@ -1,9 +1,9 @@
 package com.ascendion.libraryManagementService.controller;
 
 import com.ascendion.libraryManagementService.model.Book;
-import com.ascendion.libraryManagementService.repository.BookRepository;
 import com.ascendion.libraryManagementService.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +16,9 @@ public class BookController {
     private BookService bookService;
 
     @GetMapping("/all")
-    public List<Book> getAllBooks() {
-        return bookService.getAllBooks();
+    public ResponseEntity<List<Book>> getAllBooks() {
+        List<Book> books = bookService.getAllBooks();
+        return ResponseEntity.ok(books);
     }
 
     @PostMapping("/create")

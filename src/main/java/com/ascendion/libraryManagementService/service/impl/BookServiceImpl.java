@@ -44,6 +44,10 @@ public class BookServiceImpl implements BookService {
         if (book.getBorrower() != null) {
             throw new RuntimeException("Book is already borrowed by " + book.getBorrower().getName());
         }
+        List<Book> borrowedBooks = bookRepository.findByBorrowerId(borrowerId);
+        if (!borrowedBooks.isEmpty()) {
+            throw new RuntimeException("Borrower with id " + borrowerId + " has already borrowed a book");
+        }
         Borrower borrower = borrowerRepository.findById(borrowerId)
                 .orElseThrow(() -> new RuntimeException("Borrower not found having id " + borrowerId));
         book.setBorrower(borrower);
@@ -53,13 +57,15 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void returnBook(Long bookId) {
+    public Borrower returnBook(Long bookId) {
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found having id " + bookId));
         if (book.getBorrower() == null) {
             throw new RuntimeException("Book is not borrowed");
         }
+        Borrower borrower = book.getBorrower();
         book.setBorrower(null);
         bookRepository.save(book);
+        return borrower;
     }
 }

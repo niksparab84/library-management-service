@@ -9,5 +9,5 @@ public interface BookService {
     List<Book> getAllBooks();
     Book createBook(Book book);
     Borrower borrowBook(Long bookId, Long borrowerId);
-    void returnBook(Long bookId);
+    Borrower returnBook(Long bookId);
 }

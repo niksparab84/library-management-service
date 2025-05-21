@@ -17,6 +17,11 @@ public class BorrowerServiceImpl implements BorrowerService {
 
     @Override
     public Borrower registerBorrower(@Valid Borrower borrower) {
+        // Check if the borrower with same email id already exists
+        Borrower existingBorrower = borrowerRepository.findByEmail(borrower.getEmail());
+        if (existingBorrower != null) {
+            throw new RuntimeException("Borrower with email " + borrower.getEmail() + " already exists");
+        }
         return borrowerRepository.save(borrower);
     }
 

@@ -24,6 +24,6 @@ public class Borrower {
 
     @NotBlank(message = "Email is mandatory")
     @Email(message = "Email should be valid")
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 }

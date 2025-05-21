@@ -25,31 +25,19 @@ public class BookController {
 
     @PostMapping("/create")
     public ResponseEntity<?> createBook(@Valid @RequestBody Book book) {
-        try {
-            Book createdBook = bookService.createBook(book);
-            return ResponseEntity.ok(createdBook);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        Book createdBook = bookService.createBook(book);
+        return ResponseEntity.ok(createdBook);
     }
 
     @PostMapping("/borrow/{bookId}")
     public ResponseEntity<?> borrowBook(@PathVariable Long bookId, @RequestParam Long borrowerId) {
-        try{
-            Borrower borrower = bookService.borrowBook(bookId, borrowerId);
-            return ResponseEntity.ok("Book borrowed successfully by " + borrower.getName());
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
+        Borrower borrower = bookService.borrowBook(bookId, borrowerId);
+        return ResponseEntity.ok("Book is borrowed successfully by " + borrower.getName());
     }
 
     @PutMapping("/return/{bookId}")
     public ResponseEntity<String> returnBook(@PathVariable Long bookId) {
-        try {
-            bookService.returnBook(bookId);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-        return ResponseEntity.ok("Book is returned successfully");
+        Borrower borrower = bookService.returnBook(bookId);
+        return ResponseEntity.ok("Book is returned successfully by " + borrower.getName());
     }
 }

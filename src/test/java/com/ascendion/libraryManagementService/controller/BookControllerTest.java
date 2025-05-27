@@ -12,15 +12,24 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BookController.class)
 class BookControllerTest {
+
+    /**
+     * This test class is for testing the BookController class.
+     * It uses MockMvc to perform HTTP requests and verify the responses.
+     * The tests cover various scenarios such as retrieving all books, creating a book,
+     * borrowing a book, and returning a book.
+     */
 
     @Autowired
     private MockMvc mockMvc;
@@ -31,6 +40,10 @@ class BookControllerTest {
     @MockBean
     private BookService bookService;
 
+    /**
+     * This method tests the getAllBooks method of the BookController class.
+     * It checks if all books can be retrieved successfully.
+     */
     @Test
     public void testGetAllBooks() {
         try {
@@ -57,6 +70,10 @@ class BookControllerTest {
         }
     }
 
+    /**
+     * This method tests the createBook method of the BookController class.
+     * It checks if a book can be created successfully with valid data.
+     */
     @Test
     public void testCreateBook() {
         try {
@@ -77,6 +94,10 @@ class BookControllerTest {
         }
     }
 
+    /**
+     * This method tests the createBook method of the BookController class with invalid data.
+     * It checks if the appropriate error response is returned when the book data is invalid.
+     */
     @Test
     public void testCreateBookWithInvalidData() {
         try {
@@ -89,6 +110,10 @@ class BookControllerTest {
         }
     }
 
+    /**
+     * This method tests the createBook method of the BookController class with a duplicate ISBN.
+     * It checks if the appropriate error response is returned when a book with the same ISBN already exists.
+     */
     @Test
     public void testCreateBookAuthorDataValidation() {
         try {
@@ -103,6 +128,10 @@ class BookControllerTest {
         }
     }
 
+    /**
+     * This method tests the createBook method of the BookController class with ISBN data validation.
+     * It checks if the appropriate error response is returned when the ISBN is empty.
+     */
     @Test
     public void testCreateBookIsbnDataValidation() {
         try {
@@ -117,6 +146,10 @@ class BookControllerTest {
         }
     }
 
+    /**
+     * This method tests the createBook method of the BookController class with title data validation.
+     * It checks if the appropriate error response is returned when the title is empty.
+     */
     @Test
     public void testCreateBookTitleDataValidation() {
         try {
@@ -131,7 +164,11 @@ class BookControllerTest {
         }
     }
 
-    //Test validation - 2 books with the same ISBN numbers must have the same title and same author
+    /**
+     * This method tests the createBook method of the BookController class with a duplicate ISBN.
+     * It checks if the appropriate error response is returned when a book with the same ISBN exists
+     * but has a different title or author.
+     */
     @Test
     public void testCreateBookWithSameIsbnDifferentTitleAndAuthor() {
         try {
@@ -151,7 +188,12 @@ class BookControllerTest {
         }
     }
 
-    //Test validation - 2 books with the same title and same author but different ISBN numbers are considered as different books
+    /**
+     * This method tests the createBook method of the BookController class with two books
+     * having the same title and author but different ISBN numbers.
+     * It checks if both books can be created successfully
+     * without any validation errors.
+     */
     @Test
     public void testCreateBookWithSameTitleAndAuthorDifferentIsbn() {
         try {
@@ -174,7 +216,10 @@ class BookControllerTest {
         }
     }
 
-    //Test - Borrow a book
+    /**
+     * This method tests the borrowBook method of the BookController class.
+     * It checks if a book can be borrowed successfully by a borrower.
+     */
     @Test
     public void testBorrowBook() {
         try {
@@ -191,7 +236,10 @@ class BookControllerTest {
         }
     }
 
-    //Test - Return a book
+    /**
+     * This method tests the returnBook method of the BookController class.
+     * It checks if a book can be returned successfully by a borrower.
+     */
     @Test
     public void testReturnBook() {
         try {
@@ -206,7 +254,4 @@ class BookControllerTest {
             System.out.println("Exception occurred: " + e.getMessage());
         }
     }
-
-
-
 }

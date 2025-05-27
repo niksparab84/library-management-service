@@ -13,12 +13,20 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BorrowerController.class)
 class BorrowerControllerTest {
+
+    /**
+     * This test class is for testing the BorrowerController class.
+     * It uses MockMvc to perform HTTP requests and verify the responses.
+     * The tests cover the functionality of registering a borrower and retrieving all borrowers.
+     */
 
     @Autowired
     MockMvc mockMvc;
@@ -29,7 +37,11 @@ class BorrowerControllerTest {
     @MockBean
     BorrowerService borrowerService;
 
-    //Test registerBorrower
+    /**
+     * This test method verifies the functionality of registering a borrower.
+     * It checks if a borrower can be registered successfully
+     * when the email does not already exist.
+     */
     @Test
     public void testRegisterBorrower() {
         try {
@@ -50,7 +62,10 @@ class BorrowerControllerTest {
         }
     }
 
-    //Test getAllBorrowers
+    /**
+     * This test method verifies the functionality of retrieving all borrowers.
+     * It checks if all borrowers can be retrieved successfully.
+     */
     @Test
     void testGetAllBorrowers() {
         try {

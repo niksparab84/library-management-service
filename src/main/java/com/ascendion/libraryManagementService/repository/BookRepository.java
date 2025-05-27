@@ -6,9 +6,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * Repository interface for managing Book entities.
+ * Provides methods to perform CRUD operations on books.
+ */
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+    /**
+     * Finds books by their ISBN.
+     *
+     * @param isbn the ISBN of the book
+     * @return a list of books with the specified ISBN
+     */
     List<Book> findByIsbn(String isbn);
-    List<Book> findByBorrowerId(Long borrowerId);
 }

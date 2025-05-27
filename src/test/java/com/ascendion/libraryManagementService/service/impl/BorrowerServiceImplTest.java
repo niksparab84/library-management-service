@@ -11,9 +11,16 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BorrowerServiceImplTest {
+
+    /**
+     * This test class is for testing the BorrowerServiceImpl class.
+     * It uses Mockito to mock the BorrowerRepository and tests the methods
+     * registerBorrower and getAllBorrowers.
+     */
 
     @InjectMocks
     private BorrowerServiceImpl borrowerServiceImpl;
@@ -26,6 +33,10 @@ class BorrowerServiceImplTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    /**
+     * This method tests the registerBorrower method of the BorrowerServiceImpl class.
+     * It checks if a borrower can be registered successfully when the email does not already exist.
+     */
     @Test
     void testRegisterBorrower() {
         Borrower borrower = new Borrower();
@@ -41,6 +52,10 @@ class BorrowerServiceImplTest {
         assertEquals("Ravi", registeredBorrower.getName());
     }
 
+    /**
+     * This method tests the getAllBorrowers method of the BorrowerServiceImpl class.
+     * It checks if all borrowers can be retrieved successfully.
+     */
     @Test
     void testGetAllBorrowers() {
         List<Borrower> borrowers = List.of(

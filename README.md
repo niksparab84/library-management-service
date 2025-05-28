@@ -159,7 +159,36 @@ Book is borrowed successfully by Tom
 Book is returned successfully by Ravi
 ```
 ******************************************************************************************
-
+- **Name**: Get Borrowed Books
+- **Description**: Get a list of all active borrowed books.
+- **Endpoint**: GET /borrowings/allActive
+- **URL**: http://localhost:8080/library-management-service/api/borrowings/allActive
+- **Response**:
+```json
+[
+  {
+        "borrowingId": 2,
+        "book": {
+            "id": 3,
+            "isbn": "1234567867",
+            "title": "Book2",
+            "author": "Author2"
+        },
+        "borrower": {
+            "id": 1,
+            "name": "Tom",
+            "email": "Tom@hotmail.com"
+        },
+        "borrowDate": "2025-05-28T00:27:03.58085",
+        "returnDueDate": "2025-06-11T00:27:03.58089",
+        "returnDate": null,
+        "status": "BORROWED",
+        "fineAmount": null,
+        "notes": null
+    }
+]
+```
+******************************************************************************************
 ## Validation:
 - **Book Registration**: Validates that the book title, author, and ISBN are not empty.
 - **Borrower Registration**: Validates that the borrower's name and email are not empty. Email format is validated using regex. Email should be unique.

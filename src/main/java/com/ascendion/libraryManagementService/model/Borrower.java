@@ -52,4 +52,48 @@ public class Borrower {
     @Email(message = "Email should be valid")
     @Column(nullable = false, unique = true)
     private String email;
+
+    /**
+     * Returns a string representation of the Borrower object.
+     * @return a string containing the borrower's ID, name, and email.
+     */
+    @Override
+    public String toString() {
+        return "Borrower{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
+    /**
+     * Compares this Borrower object with another object for equality.
+     * Two Borrower objects are considered equal if they have the same ID, name, and email.
+     *
+     * @param o the object to be compared with this Borrower
+     * @return true if the objects are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Borrower)) return false;
+        Borrower borrower = (Borrower) o;
+        return id == borrower.id &&
+                name.equals(borrower.name) &&
+                email.equals(borrower.email);
+    }
+
+    /**
+     * Returns a hash code value for the Borrower object.
+     * The hash code is computed based on the borrower's ID, name, and email.
+     *
+     * @return an integer hash code value
+     */
+    @Override
+    public int hashCode() {
+        int result = Long.hashCode(id);
+        result = 31 * result + name.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
 }

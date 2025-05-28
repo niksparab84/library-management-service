@@ -53,4 +53,43 @@ public class Book {
     @NotBlank(message = "Author is mandatory")
     @Column(nullable = false)
     private String author;
+
+    /**
+     * Returns a string representation of the book object.
+     * @return a string containing the book's id, isbn, title, and author
+     */
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                '}';
+    }
+
+    /**
+     * Checks if this book is equal to another object.
+     * @return true if the other object is a Book with the same id, isbn, title, and author; false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return id == book.id && isbn.equals(book.isbn) && title.equals(book.title) && author.equals(book.author);
+    }
+
+    /**
+     * Returns a hash code value for the book object.
+     * @return an integer hash code based on the book's id, isbn, title, and author
+     */
+    @Override
+    public int hashCode() {
+        int result = Long.hashCode(id);
+        result = 31 * result + isbn.hashCode();
+        result = 31 * result + title.hashCode();
+        result = 31 * result + author.hashCode();
+        return result;
+    }
+
 }

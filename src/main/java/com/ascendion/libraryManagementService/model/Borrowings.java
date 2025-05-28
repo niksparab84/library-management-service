@@ -9,11 +9,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * This class represents a borrowing record in the library management system.
@@ -53,7 +55,7 @@ public class Borrowings {
      * But at a time, a book can only be borrowed by one borrower.
      * The @JoinColumn annotation specifies the foreign key column in the database.
      */
-    @NotBlank(message = "Book ID is mandatory")
+    @NotNull(message = "Book ID is mandatory")
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false, referencedColumnName = "id")
     private Book book;
@@ -65,7 +67,7 @@ public class Borrowings {
      * But at a time, a borrower can only borrow one book.
      * The @JoinColumn annotation specifies the foreign key column in the database.
      */
-    @NotBlank(message = "Borrower ID is mandatory")
+    @NotNull(message = "Borrower ID is mandatory")
     @ManyToOne
     @JoinColumn(name = "borrower_id", nullable = false, referencedColumnName = "id")
     private Borrower borrower;
@@ -75,7 +77,7 @@ public class Borrowings {
      * It is mandatory and cannot be blank.
      * The @Column annotation specifies that this field is a column in the database table.
      */
-    @NotBlank(message = "Borrow date is mandatory")
+    @NotNull(message = "Borrow date is mandatory")
     @Column(nullable = false)
     private LocalDateTime borrowDate;
 
@@ -84,7 +86,7 @@ public class Borrowings {
      * It is mandatory and cannot be blank.
      * The @Column annotation specifies that this field is a column in the database table.
      */
-    @NotBlank(message = "Return due date is mandatory")
+    @NotNull(message = "Return due date is mandatory")
     @Column(nullable = false)
     private LocalDateTime returnDueDate;
 
@@ -98,11 +100,11 @@ public class Borrowings {
 
     /**
      * This field represents the status of the borrowing.
-     * It is mandatory and cannot be blank.
+     * It is mandatory and cannot be null.
      * The status can be BORROWED, RETURNED
      * The @Column annotation specifies that this field is a column in the database table.
      */
-    @NotBlank(message = "Status is mandatory")
+    @NotNull(message = "Status is mandatory")
     @Column(nullable = false)
     private BorrowingStatus status;
 
@@ -120,6 +122,53 @@ public class Borrowings {
      * The @Column annotation specifies that this field is a column in the database table.
      */
     @Column
-    private String notes; // Additional notes about the borrowing, if any
+    private String notes;
 
+    /**
+     * This method returns a string representation of the Borrowings object.
+     * It includes the borrowingId, book, borrower, borrowDate, returnDueDate,
+     * returnDate, status, fineAmount, and notes.
+     *
+     * @return A string representation of the Borrowings object.
+     */
+    @Override
+    public String toString() {
+        return "Borrowings{" +
+                "borrowingId=" + borrowingId +
+                ", book=" + book +
+                ", borrower=" + borrower +
+                ", borrowDate=" + borrowDate +
+                ", returnDueDate=" + returnDueDate +
+                ", returnDate=" + returnDate +
+                ", status=" + status +
+                ", fineAmount=" + fineAmount +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
+
+    /**
+     * This method checks if two Borrowings objects are equal based on their borrowingId.
+     * It overrides the equals method from the Object class.
+     *
+     * @param o The object to be compared with this Borrowings object.
+     * @return true if the borrowingId of both objects is the same, false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Borrowings)) return false;
+        Borrowings that = (Borrowings) o;
+        return Objects.equals(borrowingId, that.borrowingId);
+    }
+
+    /**
+     * This method returns the hash code for the Borrowings object.
+     * It overrides the hashCode method from the Object class.
+     *
+     * @return The hash code of the borrowingId.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(borrowingId);
+    }
 }

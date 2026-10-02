@@ -1,5 +1,5 @@
 # library-management-service
-Simple Library System for Ascendion Java Assessment
+Library Management Service packaged with Postgres using kubernetes
 
 ## How to run the application
 1. Clone the repository:

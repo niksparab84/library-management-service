@@ -11,6 +11,8 @@ import com.ascendion.libraryManagementService.repository.BorrowerRepository;
 import com.ascendion.libraryManagementService.repository.BorrowingsRepository;
 import com.ascendion.libraryManagementService.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,6 +23,7 @@ import java.util.List;
  * and provides methods to manage books in the library.
  */
 @Service
+@CacheConfig(cacheNames = {"bookCache"})
 public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
@@ -154,5 +157,13 @@ public class BookServiceImpl implements BookService {
         borrowingsRepository.save(borrowing);
 
         return borrowing.getBorrower();
+    }
+
+    @Override
+    @Cacheable
+    public Book getBookById(Long bookId) {
+        System.out.println("Calling DB for bookId: " + bookId);
+        return bookRepository.findById(bookId)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(BOOK_NOT_FOUND, bookId)));
     }
 }

@@ -106,4 +106,10 @@ public class BookController {
         Borrower borrower = bookService.returnBook(bookId);
         return ResponseEntity.ok("Book is returned successfully by " + borrower.getName());
     }
+
+    @GetMapping("/book/{bookId}")
+    public ResponseEntity<Book> getBookById(@PathVariable Long bookId) {
+        Book book = bookService.getBookById(bookId);
+        return ResponseEntity.ok(book);
+    }
 }

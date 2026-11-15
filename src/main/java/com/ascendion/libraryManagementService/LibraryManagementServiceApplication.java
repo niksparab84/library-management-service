@@ -2,6 +2,7 @@ package com.ascendion.libraryManagementService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 
 /**
  * Main application class for the Library Management Service.
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * It initializes the application context and starts the embedded server.
  */
 @SpringBootApplication
+@EnableCaching
 public class LibraryManagementServiceApplication {
 
 	/**

@@ -42,4 +42,6 @@ public interface BookService {
      * @return The borrower who returned the book.
      */
     Borrower returnBook(Long bookId);
+
+    Book getBookById(Long bookId);
 }
